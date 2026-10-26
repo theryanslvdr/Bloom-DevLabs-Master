@@ -21,6 +21,7 @@ load_dotenv(ROOT_DIR / ".env")
 
 from emailit_client import EmailitClient  # noqa: E402
 from openrouter_client import OpenRouterClient  # noqa: E402
+from version import RELEASE  # noqa: E402
 from paypal_client import PayPalClient  # noqa: E402
 from paypal_routes import paypal_admin_router, paypal_router  # noqa: E402
 from gym_upgrade_routes import gym_upgrade_router  # noqa: E402
@@ -389,7 +390,7 @@ app = FastAPI(title="Bloom Labs API", version="1.0.0", lifespan=lifespan)
 # deployer-managed health checks tend to hit /health without the /api prefix.
 @app.get("/health", include_in_schema=False)
 async def root_health() -> dict:
-    return {"status": "healthy"}
+    return {"status": "healthy", "release": RELEASE}
 
 
 # Top-level /api router
@@ -407,7 +408,7 @@ async def root() -> dict:
 
 @api.get("/health")
 async def health() -> dict:
-    return {"status": "healthy"}
+    return {"status": "healthy", "release": RELEASE}
 
 
 # Mount sub-routers under /api

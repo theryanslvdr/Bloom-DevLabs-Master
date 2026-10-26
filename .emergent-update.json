@@ -1,0 +1,22 @@
+{
+  "repo": "theryanslvdr/Bloom-DevLabs-Master",
+  "branch": "main",
+  "changes_branch": "emergent-changes",
+  "workspace": "/app",
+  "key_dir": "/app/.ssh_emergent",
+  "keep_paths": [
+    ".emergent"
+  ],
+  "never_clean": [],
+  "install": [
+    "cd /app/backend && pip install -r requirements.txt",
+    "cd /app/frontend && yarn install"
+  ],
+  "restart": "sudo supervisorctl restart backend frontend",
+  "health_cmd": "curl -s localhost:8001/api/health",
+  "release_file": "backend/version.py",
+  "release_regex": "RELEASE\\s*=\\s*\"([^\"]+)\"",
+  "release_key": "release",
+  "log_check": "tail -n 50 /var/log/supervisor/backend.err.log",
+  "frontend_check": "the frontend compiles"
+}

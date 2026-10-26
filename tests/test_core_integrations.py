@@ -16,8 +16,9 @@ from typing import Any, Dict
 
 import requests
 
-OPENROUTER_API_KEY = "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"
-EMAILIT_API_KEY = "secret_pxILidVS6d4APzPOxGmBnSRxyEFxvo2Q"
+# Keys come from the environment (backend/.env); never hard-code them here.
+OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
+EMAILIT_API_KEY = os.environ.get("EMAILIT_API_KEY", "")
 
 
 def divider(label: str) -> None:
